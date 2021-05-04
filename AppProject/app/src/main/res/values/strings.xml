@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AppProject</string>
+    <string name="menu_item_name_1">Item 1</string>
+
 </resources>
