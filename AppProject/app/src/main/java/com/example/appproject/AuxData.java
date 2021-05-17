@@ -3,37 +3,37 @@ package com.example.appproject;
 import java.util.ArrayList;
 
 public class AuxData {
-    private String wiki;
-    private String img;
-    private ArrayList<Fish> fishes;
+    private String Wiki;
+    private String Img;
+    private Fish fish;
 
-    public AuxData(String wiki, String img, ArrayList<Fish> fishes) {
-        this.wiki = wiki;
-        this.img = img;
-        this.fishes = fishes;
+    public AuxData(String wiki, String img, Fish fish) {
+        Wiki = wiki;
+        Img = img;
+        this.fish = fish;
     }
 
     public String getWiki() {
-        return wiki;
+        return Wiki;
     }
 
     public void setWiki(String wiki) {
-        this.wiki = wiki;
+        Wiki = wiki;
     }
 
     public String getImg() {
-        return img;
+        return Img;
     }
 
     public void setImg(String img) {
-        this.img = img;
+        Img = img;
     }
 
-    public ArrayList<Fish> getFishes() {
-        return fishes;
+    public Fish getFish() {
+        return fish;
     }
 
-    public void setFishes(ArrayList<Fish> fishes) {
-        this.fishes = fishes;
+    public void setFish(Fish fish) {
+        this.fish = fish;
     }
 }

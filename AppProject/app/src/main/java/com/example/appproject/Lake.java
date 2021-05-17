@@ -1,87 +1,111 @@
 package com.example.appproject;
 
 public class Lake {
-    private long ID;
-    private String Name;
-    private String Company;
-    private int Size;
-    private int Cost;
-    private String Location;
-    private String Category;
-    private AuxData Auxdata;
+    private String ID;
+    private String name;
+    private String company;
+    private int size;
+    private int cost;
+    private String location;
+    private String category;
+    private AuxData auxdata;
 
-    public Lake(long ID, String name, String company, int size, int cost, String location, String category, com.example.appproject.AuxData auxdata) {
+    public Lake(String ID, String name, String company, int size, int cost, String location, String category, AuxData auxdata) {
         this.ID = ID;
-        Name = name;
-        Company = company;
-        Size = size;
-        Cost = cost;
-        Location = location;
-        Category = category;
-        Auxdata = auxdata;
+        this.name = name;
+        this.company = company;
+        this.size = size;
+        this.cost = cost;
+        this.location = location;
+        this.category = category;
+        this.auxdata = auxdata;
+    }
+    public Lake(String ID, String name, String company, int size, int cost, String location, String category) {
+        this.ID = ID;
+        this.name = name;
+        this.company = company;
+        this.size = size;
+        this.cost = cost;
+        this.location = location;
+        this.category = category;
+        this.auxdata = null;
     }
 
-    public long getID() {
+    public String getID() {
         return ID;
     }
 
-    public void setID(long ID) {
+    public void setID(String ID) {
         this.ID = ID;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public String getCompany() {
-        return Company;
+        return company;
     }
 
     public void setCompany(String company) {
-        Company = company;
+        this.company = company;
     }
 
     public int getSize() {
-        return Size;
+        return size;
     }
 
     public void setSize(int size) {
-        Size = size;
+        this.size = size;
     }
 
     public int getCost() {
-        return Cost;
+        return cost;
     }
 
     public void setCost(int cost) {
-        Cost = cost;
+        this.cost = cost;
     }
 
     public String getLocation() {
-        return Location;
+        return location;
     }
 
     public void setLocation(String location) {
-        Location = location;
+        this.location = location;
     }
 
     public String getCategory() {
-        return Category;
+        return category;
     }
 
     public void setCategory(String category) {
-        Category = category;
+        this.category = category;
     }
 
-    public com.example.appproject.AuxData getAuxData() {
-        return Auxdata;
+    public AuxData getAuxdata() {
+        return auxdata;
     }
 
-    public void setAuxData(com.example.appproject.AuxData auxdata) {
-        Auxdata = auxdata;
+    public void setAuxdata(AuxData auxdata) {
+        this.auxdata = auxdata;
+    }
+
+    @Override
+    public String toString() {
+        return "Lake{" +
+                "ID='" + ID + '\'' +
+                ", name='" + name + '\'' +
+                ", company='" + company + '\'' +
+                ", size=" + size +
+                ", cost=" + cost +
+                ", location='" + location + '\'' +
+                ", category='" + category + '\'' +
+                ", auxdata=" + auxdata +
+                '}';
     }
 }
