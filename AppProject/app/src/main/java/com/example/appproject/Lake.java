@@ -97,15 +97,6 @@ public class Lake {
 
     @Override
     public String toString() {
-        return "Lake{" +
-                "ID='" + ID + '\'' +
-                ", name='" + name + '\'' +
-                ", company='" + company + '\'' +
-                ", size=" + size +
-                ", cost=" + cost +
-                ", location='" + location + '\'' +
-                ", category='" + category + '\'' +
-                ", auxdata=" + auxdata +
-                '}';
+        return "" + name + " i " + location;
     }
 }

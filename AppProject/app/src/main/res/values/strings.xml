@@ -8,5 +8,6 @@
     <string name="button_name_1">Tillbaka</string>
     <string name="button_name_2">Fiskar</string>
     <string name="button_name_3">Fiske info</string>
+    <string name="update">Uppdatera</string>
 
 </resources>

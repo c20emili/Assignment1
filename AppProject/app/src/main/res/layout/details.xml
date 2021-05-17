@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 <WebView
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="400dp"
     android:id="@+id/webview_1"
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintRight_toRightOf="parent"
@@ -20,6 +20,17 @@
         app:layout_constraintTop_toBottomOf="@id/webview_1"
         app:layout_constraintBottom_toBottomOf="parent"
         >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="Placeholder text before data is fetched"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/button_1"/>
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -27,6 +38,8 @@
             android:text="@string/button_name_1"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/button_2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             />
         <Button
             android:layout_width="wrap_content"
@@ -35,6 +48,8 @@
             android:text="@string/button_name_2"
             app:layout_constraintLeft_toRightOf="@id/button_1"
             app:layout_constraintRight_toLeftOf="@id/button_3"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             />
         <Button
             android:layout_width="wrap_content"
@@ -43,6 +58,8 @@
             android:text="@string/button_name_3"
             app:layout_constraintLeft_toRightOf="@id/button_2"
             app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

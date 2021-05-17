@@ -13,6 +13,7 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
@@ -42,7 +43,14 @@ public class MainActivity extends AppCompatActivity {
         lakeArrayAdapter = new ArrayAdapter<>(this, R.layout.list_line, R.id.list_text, lakeArrayList);//kopplar ihop xml-filen, textview elementet och listan
         ListView myListView = findViewById(R.id.lake_list);
         myListView.setAdapter(lakeArrayAdapter);
-
+        new JsonTask().execute("https://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=c20emili");
+        Button button = findViewById(R.id.uppdater);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new JsonTask().execute("https://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=c20emili");
+            }
+        });
     }
 
     @Override
@@ -63,12 +71,9 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         if (id == R.id.menu_item_3) {
-            setContentView(R.layout.activity_main);
-            new JsonTask().execute("https://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=c20emili");
             return true;
         }
         if (id == R.id.menu_item_4) {
-            setContentView(R.layout.activity_main);
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -119,7 +124,6 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String json) {
-            Log.d(" JsonData ==>", json);
             lakeArrayList.clear();
             try {
                 Gson gson = new Gson();
@@ -127,7 +131,6 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < lakes.length; i++) {
                     Lake temp = lakes[i];
                     lakeArrayList.add(temp);
-                    Log.d("LakeArray ==>",""+lakes[i]);
                     Log.d("arraylist ==>", ""+ lakeArrayList.get(i));
                 }
             }
