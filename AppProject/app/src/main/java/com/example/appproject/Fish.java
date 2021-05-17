@@ -1,57 +1,57 @@
 package com.example.appproject;
 
 public class Fish {
-    private int minLength;
-    private int maxLength;
-    private int minWeight;
-    private int maxWeight;
-    private String latin;
+    private int MinLength;
+    private int MaxLength;
+    private int MinWeight;
+    private int MaxWeight;
+    private String Latin;
 
     public Fish(int minLength, int maxLength, int minWeight, int maxWeight, String latin) {
-        this.minLength = minLength;
-        this.maxLength = maxLength;
-        this.minWeight = minWeight;
-        this.maxWeight = maxWeight;
-        this.latin = latin;
+        MinLength = minLength;
+        MaxLength = maxLength;
+        MinWeight = minWeight;
+        MaxWeight = maxWeight;
+        Latin = latin;
     }
 
     public int getMinLength() {
-        return minLength;
+        return MinLength;
     }
 
     public void setMinLength(int minLength) {
-        this.minLength = minLength;
+        MinLength = minLength;
     }
 
     public int getMaxLength() {
-        return maxLength;
+        return MaxLength;
     }
 
     public void setMaxLength(int maxLength) {
-        this.maxLength = maxLength;
+        MaxLength = maxLength;
     }
 
     public int getMinWeight() {
-        return minWeight;
+        return MinWeight;
     }
 
     public void setMinWeight(int minWeight) {
-        this.minWeight = minWeight;
+        MinWeight = minWeight;
     }
 
     public int getMaxWeight() {
-        return maxWeight;
+        return MaxWeight;
     }
 
     public void setMaxWeight(int maxWeight) {
-        this.maxWeight = maxWeight;
+        MaxWeight = maxWeight;
     }
 
     public String getLatin() {
-        return latin;
+        return Latin;
     }
 
     public void setLatin(String latin) {
-        this.latin = latin;
+        Latin = latin;
     }
 }

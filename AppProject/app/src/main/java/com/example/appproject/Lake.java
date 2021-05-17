@@ -1,88 +1,87 @@
 package com.example.appproject;
 
 public class Lake {
-    private long id;
-    private String name;
-    private String company;
-    private int size;
-    private int cost;
-    private String location;
-    private String category;
-    private AuxData auxdata;
+    private long ID;
+    private String Name;
+    private String Company;
+    private int Size;
+    private int Cost;
+    private String Location;
+    private String Category;
+    private AuxData Auxdata;
 
-
-    public Lake(long id, String name, String company, int size, int cost, String location, String category, AuxData auxdata) {
-        this.id = id;
-        this.name = name;
-        this.company = company;
-        this.size = size;
-        this.cost = cost;
-        this.location = location;
-        this.category = category;
-        this.auxdata = auxdata;
+    public Lake(long ID, String name, String company, int size, int cost, String location, String category, com.example.appproject.AuxData auxdata) {
+        this.ID = ID;
+        Name = name;
+        Company = company;
+        Size = size;
+        Cost = cost;
+        Location = location;
+        Category = category;
+        Auxdata = auxdata;
     }
 
-    public AuxData getAuxdata() {
-        return auxdata;
+    public long getID() {
+        return ID;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public int getCost() {
-        return cost;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public String getCompany() {
-        return company;
+    public void setID(long ID) {
+        this.ID = ID;
     }
 
     public String getName() {
-        return name;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setAuxdata(AuxData auxdata) {
-        this.auxdata = auxdata;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public void setCost(int cost) {
-        this.cost = cost;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
-
-    public void setCompany(String company) {
-        this.company = company;
+        return Name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        Name = name;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public String getCompany() {
+        return Company;
+    }
+
+    public void setCompany(String company) {
+        Company = company;
+    }
+
+    public int getSize() {
+        return Size;
+    }
+
+    public void setSize(int size) {
+        Size = size;
+    }
+
+    public int getCost() {
+        return Cost;
+    }
+
+    public void setCost(int cost) {
+        Cost = cost;
+    }
+
+    public String getLocation() {
+        return Location;
+    }
+
+    public void setLocation(String location) {
+        Location = location;
+    }
+
+    public String getCategory() {
+        return Category;
+    }
+
+    public void setCategory(String category) {
+        Category = category;
+    }
+
+    public com.example.appproject.AuxData getAuxData() {
+        return Auxdata;
+    }
+
+    public void setAuxData(com.example.appproject.AuxData auxdata) {
+        Auxdata = auxdata;
     }
 }
