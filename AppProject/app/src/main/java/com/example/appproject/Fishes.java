@@ -64,12 +64,10 @@ public class Fishes {
 
     @Override
     public String toString() {
-        return "Fishes{" +
-                "fish1=" + fish1 +
-                ", fish2=" + fish2 +
-                ", fish3=" + fish3 +
-                ", fish4=" + fish4 +
-                ", fish5=" + fish5 +
-                '}';
+        return  fish1 + "\n"
+                + fish2 + "\n"
+                + fish3 + "\n"
+                + fish4 + "\n"
+                + fish5 + "\n";
     }
 }

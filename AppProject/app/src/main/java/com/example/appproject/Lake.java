@@ -100,6 +100,6 @@ public class Lake {
 
     @Override
     public String toString() {
-        return "" + auxdata;
+        return  name + " i " + location;
     }
 }

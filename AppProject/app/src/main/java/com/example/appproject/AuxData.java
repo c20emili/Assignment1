@@ -44,10 +44,6 @@ public class AuxData {
 
     @Override
     public String toString() {
-        return "AuxData{" +
-                "Depth ='" + depth + '\'' +
-                ", Wikipedia ='" + wiki + '\'' +
-                ", Fishes =" + fishes +
-                '}';
+        return "Djup " + depth + "meter\n" + fishes;
     }
 }

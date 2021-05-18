@@ -64,12 +64,10 @@ public class Fish {
 
     @Override
     public String toString() {
-        return "Fish{" +
-                "minLength=" + minLength +
-                ", maxLength=" + maxLength +
-                ", minWeight=" + minWeight +
-                ", maxWeight=" + maxWeight +
-                ", latin='" + latin + '\'' +
-                '}';
+        return  latin + ":( \n" +
+                "Minimum längd : " + minLength + "cm, s" +
+                "Max längd : " + maxLength + "cm, " +
+                "Minimum vikt : " + minWeight + "kg, " +
+                "Max vikt : " + maxWeight + "kg \n)";
     }
 }
