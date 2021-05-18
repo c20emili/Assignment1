@@ -2,22 +2,18 @@ package com.example.appproject;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
-
 public class AuxData {
     @SerializedName("Djup")
     private String depth;
     @SerializedName("Wiki")
     private String wiki;
-    @SerializedName("Img")
-    private String img;
-    private Fish fish;
+    @SerializedName("Fiskar")
+    private Fishes fishes;
 
-    public AuxData(String depth, String wiki, String img, Fish fish) {
+    public AuxData(String depth, String wiki, Fishes fishes) {
         this.depth = depth;
         this.wiki = wiki;
-        this.img = img;
-        this.fish = fish;
+        this.fishes = fishes;
     }
 
     public String getDepth() {
@@ -36,19 +32,22 @@ public class AuxData {
         this.wiki = wiki;
     }
 
-    public String getImg() {
-        return img;
+
+
+    public Fishes getFishes() {
+        return fishes;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setFishes(Fishes fishes) {
+        this.fishes = fishes;
     }
 
-    public Fish getFish() {
-        return fish;
-    }
-
-    public void setFish(Fish fish) {
-        this.fish = fish;
+    @Override
+    public String toString() {
+        return "AuxData{" +
+                "Depth ='" + depth + '\'' +
+                ", Wikipedia ='" + wiki + '\'' +
+                ", Fishes =" + fishes +
+                '}';
     }
 }

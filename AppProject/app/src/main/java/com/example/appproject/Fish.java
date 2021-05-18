@@ -61,4 +61,15 @@ public class Fish {
     public void setLatin(String latin) {
         this.latin = latin;
     }
+
+    @Override
+    public String toString() {
+        return "Fish{" +
+                "minLength=" + minLength +
+                ", maxLength=" + maxLength +
+                ", minWeight=" + minWeight +
+                ", maxWeight=" + maxWeight +
+                ", latin='" + latin + '\'' +
+                '}';
+    }
 }
