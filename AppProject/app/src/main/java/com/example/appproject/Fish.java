@@ -1,57 +1,64 @@
 package com.example.appproject;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Fish {
-    private int MinLength;
-    private int MaxLength;
-    private int MinWeight;
-    private int MaxWeight;
-    private String Latin;
+    @SerializedName("MinLength")
+    private int minLength;
+    @SerializedName("MaxLength")
+    private int maxLength;
+    @SerializedName("MinWeight")
+    private int minWeight;
+    @SerializedName("MaxWeight")
+    private int maxWeight;
+    @SerializedName("Latin")
+    private String latin;
 
     public Fish(int minLength, int maxLength, int minWeight, int maxWeight, String latin) {
-        MinLength = minLength;
-        MaxLength = maxLength;
-        MinWeight = minWeight;
-        MaxWeight = maxWeight;
-        Latin = latin;
+        this.minLength = minLength;
+        this.maxLength = maxLength;
+        this.minWeight = minWeight;
+        this.maxWeight = maxWeight;
+        this.latin = latin;
     }
 
     public int getMinLength() {
-        return MinLength;
+        return minLength;
     }
 
     public void setMinLength(int minLength) {
-        MinLength = minLength;
+        this.minLength = minLength;
     }
 
     public int getMaxLength() {
-        return MaxLength;
+        return maxLength;
     }
 
     public void setMaxLength(int maxLength) {
-        MaxLength = maxLength;
+        this.maxLength = maxLength;
     }
 
     public int getMinWeight() {
-        return MinWeight;
+        return minWeight;
     }
 
     public void setMinWeight(int minWeight) {
-        MinWeight = minWeight;
+        this.minWeight = minWeight;
     }
 
     public int getMaxWeight() {
-        return MaxWeight;
+        return maxWeight;
     }
 
     public void setMaxWeight(int maxWeight) {
-        MaxWeight = maxWeight;
+        this.maxWeight = maxWeight;
     }
 
     public String getLatin() {
-        return Latin;
+        return latin;
     }
 
     public void setLatin(String latin) {
-        Latin = latin;
+        this.latin = latin;
     }
 }

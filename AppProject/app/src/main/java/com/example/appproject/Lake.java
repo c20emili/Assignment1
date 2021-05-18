@@ -1,7 +1,10 @@
 package com.example.appproject;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Lake {
-    private String ID;
+    @SerializedName("ID")
+    private String id;
     private String name;
     private String company;
     private int size;
@@ -10,8 +13,8 @@ public class Lake {
     private String category;
     private AuxData auxdata;
 
-    public Lake(String ID, String name, String company, int size, int cost, String location, String category, AuxData auxdata) {
-        this.ID = ID;
+    public Lake(String id, String name, String company, int size, int cost, String location, String category, AuxData auxdata) {
+        this.id = id;
         this.name = name;
         this.company = company;
         this.size = size;
@@ -20,8 +23,8 @@ public class Lake {
         this.category = category;
         this.auxdata = auxdata;
     }
-    public Lake(String ID, String name, String company, int size, int cost, String location, String category) {
-        this.ID = ID;
+    public Lake(String id, String name, String company, int size, int cost, String location, String category) {
+        this.id = id;
         this.name = name;
         this.company = company;
         this.size = size;
@@ -31,12 +34,12 @@ public class Lake {
         this.auxdata = null;
     }
 
-    public String getID() {
-        return ID;
+    public String getId() {
+        return id;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {

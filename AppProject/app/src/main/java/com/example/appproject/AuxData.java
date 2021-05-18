@@ -1,32 +1,47 @@
 package com.example.appproject;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 
 public class AuxData {
-    private String Wiki;
-    private String Img;
+    @SerializedName("Djup")
+    private String depth;
+    @SerializedName("Wiki")
+    private String wiki;
+    @SerializedName("Img")
+    private String img;
     private Fish fish;
 
-    public AuxData(String wiki, String img, Fish fish) {
-        Wiki = wiki;
-        Img = img;
+    public AuxData(String depth, String wiki, String img, Fish fish) {
+        this.depth = depth;
+        this.wiki = wiki;
+        this.img = img;
         this.fish = fish;
     }
 
+    public String getDepth() {
+        return depth;
+    }
+
+    public void setDepth(String depth) {
+        this.depth = depth;
+    }
+
     public String getWiki() {
-        return Wiki;
+        return wiki;
     }
 
     public void setWiki(String wiki) {
-        Wiki = wiki;
+        this.wiki = wiki;
     }
 
     public String getImg() {
-        return Img;
+        return img;
     }
 
     public void setImg(String img) {
-        Img = img;
+        this.img = img;
     }
 
     public Fish getFish() {
