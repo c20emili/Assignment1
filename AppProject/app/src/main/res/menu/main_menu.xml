@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.appproject.MainActivity">
     <item
-        android:id="@+id/menu_item_1"
+        android:id="@+id/menu_item_about"
         android:orderInCategory="150"
         android:title="@string/menu_item_name_1"
         app:showAsAction="never" />
     <item
-        android:id="@+id/menu_item_2"
+        android:id="@+id/menu_item_huvudsida"
         android:orderInCategory="100"
         android:title="@string/menu_item_name_2"
         app:showAsAction="never" />

@@ -10,17 +10,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebView;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -63,18 +57,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.menu_item_1) {
-            setContentView(R.layout.about);
+        if (id == R.id.menu_item_about) {
+            finish();
+            Intent about = new Intent(MainActivity.this, about.class);
+            startActivity(about);
             return true;
         }
-        if (id == R.id.menu_item_2) {
-            setContentView(R.layout.activity_main);
+        if (id == R.id.menu_item_huvudsida) {
             return true;
         }
         if (id == R.id.menu_item_3) {
+            finish();
             return true;
         }
         if (id == R.id.menu_item_4) {
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -125,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String json) {
+            Log.d("Json ==>", " : "+  json);
             lakeArrayList.clear();
             try {
                 Gson gson = new Gson();
