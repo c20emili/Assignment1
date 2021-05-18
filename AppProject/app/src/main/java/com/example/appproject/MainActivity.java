@@ -34,7 +34,6 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private ArrayList<Lake> lakeArrayList = new ArrayList<>();
     private ArrayAdapter<Lake> lakeArrayAdapter;
-    private Lake[] lakes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
             lakeArrayList.clear();
             try {
                 Gson gson = new Gson();
-                lakes = gson.fromJson(json, Lake[].class);
+                Lake[] lakes = gson.fromJson(json, Lake[].class);
                 for (int i = 0; i < lakes.length; i++) {
                     Lake temp = lakes[i];
                     lakeArrayList.add(temp);
