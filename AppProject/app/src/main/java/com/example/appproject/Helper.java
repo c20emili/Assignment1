@@ -17,14 +17,12 @@ public class Helper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(Database.SQL_CREATE_TABLE_LAKE);
-        sqLiteDatabase.execSQL(Database.SQL_CREATE_TABLE_AUX);
         sqLiteDatabase.execSQL(Database.SQL_CREATE_TABLE_FISH);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
         sqLiteDatabase.execSQL(Database.SQL_DELETE_TABLE_LAKE);
-        sqLiteDatabase.execSQL(Database.SQL_DELETE_TABLE_AUX);
         sqLiteDatabase.execSQL(Database.SQL_DELETE_TABLE_FISH);
         onCreate(sqLiteDatabase);
     }
