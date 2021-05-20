@@ -23,17 +23,16 @@ public class Lake {
         this.category = category;
         this.auxdata = auxdata;
     }
-    public Lake(String id, String name, String company, int size, int cost, String location, String category) {
-        this.id = id;
-        this.name = name;
-        this.company = company;
-        this.size = size;
-        this.cost = cost;
-        this.location = location;
-        this.category = category;
-        this.auxdata = null;
-    }
 
+    public Lake(long i, String n, int s, int c, String l, String ca, int d, String w) {
+        id=Long.toString(i);
+        name=n;
+        size=s;
+        cost=c;
+        location=l;
+        category=ca;
+        auxdata=new AuxData(d,w);
+    }
 
 
     public String getId() {
@@ -103,5 +102,9 @@ public class Lake {
     @Override
     public String toString() {
         return  name + " i " + location;
+    }
+    public String textFunc(){
+        String temp ="Sjön "+name+" ligger delvis eller helt i "+location+"'s län. den är "+size+"kilometer area och är "+ auxdata+"meter djup. Det krävs "+category+" för att fiska i "+name+" vilket gör att det kostar"+cost+"kr att fiska" ;
+        return temp;
     }
 }

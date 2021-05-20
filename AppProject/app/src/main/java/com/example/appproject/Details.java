@@ -18,20 +18,7 @@ public class Details extends AppCompatActivity {
         setContentView(R.layout.details);
         WebView wikiped = findViewById(R.id.webview_1);
         TextView infotext =findViewById(R.id.details_text);
-        Button back = findViewById(R.id.button_back);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-        Button info = findViewById(R.id.button_fishing_info);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

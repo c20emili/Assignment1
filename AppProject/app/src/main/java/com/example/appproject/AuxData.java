@@ -4,20 +4,20 @@ import com.google.gson.annotations.SerializedName;
 
 public class AuxData {
     @SerializedName("Djup")
-    private String depth;
+    private int depth;
     @SerializedName("Wiki")
     private String wiki;
 
-    public AuxData(String depth, String wiki) {
+    public AuxData(int depth, String wiki) {
         this.depth = depth;
         this.wiki = wiki;
     }
 
-    public String getDepth() {
+    public int getDepth() {
         return depth;
     }
 
-    public void setDepth(String depth) {
+    public void setDepth(int depth) {
         this.depth = depth;
     }
 

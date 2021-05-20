@@ -14,9 +14,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 
@@ -31,54 +34,74 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private ArrayList<Alldata> lakeArrayList = new ArrayList<>();
-    private ArrayAdapter<Alldata> lakeArrayAdapter;
+    private List<Lake> lakeArrayList = new ArrayList<>();
+    private ArrayAdapter<Lake> lakeArrayAdapter;
     private SQLiteDatabase database;
-    private com.example.persistence.Helper helper;
+    private Helper helper;
     private SharedPreferences konstant;
     private SharedPreferences.Editor konstantEdit;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        helper = new Helper(this);
+        database = helper.getWritableDatabase();
+
         lakeArrayAdapter = new ArrayAdapter<>(this, R.layout.list_line, R.id.list_text, lakeArrayList);//kopplar ihop xml-filen, textview elementet och listan
         ListView myListView = findViewById(R.id.lake_list);
         myListView.setAdapter(lakeArrayAdapter);
-        
+
+        myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                detailView(position);
+            }
+        });
+
         Button all = findViewById(R.id.knapp_all_lake);
         all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 konstantEdit.putString("choice","All");
                 konstantEdit.apply();
-                fetchData(konstant.getString("choice","All"));
+                lakeArrayList=fetchData(konstant.getString("choice","All"));
+                lakeArrayAdapter.notifyDataSetChanged();
             }
         });
         Button free = findViewById(R.id.knapp_free_lake);
         free.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                konstantEdit.putString("choice","Gratis");
+                konstantEdit.putString("choice","Inget");
                 konstantEdit.apply();
-                fetchData(konstant.getString("choice","All"));
+                lakeArrayList=fetchData(konstant.getString("choice","All"));
+                lakeArrayAdapter.notifyDataSetChanged();
             }
         });
         Button card = findViewById(R.id.knapp_card_lake);
         card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                konstantEdit.putString("choice","Fiskekort krävs");
+                konstantEdit.putString("choice","Fiskekort");
                 konstantEdit.apply();
-                fetchData(konstant.getString("choice","All"));
+                lakeArrayList=fetchData(konstant.getString("choice","All"));
+                lakeArrayAdapter.notifyDataSetChanged();
             }
         });
         konstant = getPreferences(MODE_PRIVATE);
         konstantEdit = konstant.edit();
 
-        new JsonTask().execute("https://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=c20emili");
+
+    }
+    public void detailView(int item){
+        setContentView(R.layout.details);
+        WebView wikiped = findViewById(R.id.webview_1);
+        Lake l =lakeArrayList.get(item);
+        wikiped.loadUrl(l.getAuxdata().getWiki());
+        TextView infotext =findViewById(R.id.details_text);
+        infotext.setText(l.textFunc());
     }
 
     @Override
@@ -96,10 +119,13 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         if (id == R.id.menu_item_huvudsida) {
+            database.delete(Database.Lake.TABLE_NAME,null,null);
+            new JsonTask().execute("https://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=c20emili");
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
     @SuppressLint("StaticFieldLeak")
     private class JsonTask extends AsyncTask<String, String, String> {
 
@@ -146,74 +172,70 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String json) {
+            lakeArrayList.clear();
             Log.d("Json ==>", " : "+  json);
             try {
                 Gson gson = new Gson();
                 Lake[] lakes = gson.fromJson(json, Lake[].class);
                 for (int i = 0; i < lakes.length; i++) {
-                    Log.d("lista ==>", ""+ lakes[i]);
-                    addData(lakes[i].getId(), lakes[i].getName(), lakes[i].getCompany(), lakes[i].getSize(), lakes[i].getCost(), lakes[i].getLocation(), lakes[i].getCategory(), lakes[i].getAuxdata().getDepth(), lakes[i].getAuxdata().getWiki());
+                    Log.d("lista ==>", ""+ lakes[i].getId() +" "+ lakes[i].getName() +" "+ lakes[i].getSize() +" "+ lakes[i].getCost() +" "+ lakes[i].getLocation() +" "+ lakes[i].getCategory() +" "+ lakes[i].getAuxdata().getDepth() +" "+ lakes[i].getAuxdata().getWiki());
+                    addData(lakes[i]);
                 }
             }
             catch (Exception e){
                 Log.d("JsonException ==>", "Error: "+ e);
             }
-
-            Log.d("konstant ==>", "Konstant= "+ konstant.getString("choice","All"));
+            lakeArrayList=fetchData(konstant.getString("choice","All"));
+            Log.d("Array ==>", " "+lakeArrayList.toString());
             lakeArrayAdapter.notifyDataSetChanged();
         }
     }
-    private long addData(String id, String name, String company, int size, int cost, String location, String category, String depth, String wiki) {
+    private long addData(Lake l) {
         ContentValues values = new ContentValues();
-        values.put(Database.Alldata.COLUMN_NAME_ID, id);
-        values.put(Database.Alldata.COLUMN_NAME_NAME, name);
-        values.put(Database.Alldata.COLUMN_NAME_COMPANY, company);
-        values.put(Database.Alldata.COLUMN_NAME_SIZE, size);
-        values.put(Database.Alldata.COLUMN_NAME_COST, cost);
-        values.put(Database.Alldata.COLUMN_NAME_LOCATION, location);
-        values.put(Database.Alldata.COLUMN_NAME_CATEGORY, category);
-        values.put(Database.Alldata.COLUMN_NAME_DEPTH, depth);
-        values.put(Database.Alldata.COLUMN_NAME_WIKI, wiki);
-        return database.insert(Database.Alldata.TABLE_NAME, null, values);
+        values.put(Database.Lake.COLUMN_NAME_NAME, l.getName());
+        values.put(Database.Lake.COLUMN_NAME_SIZE, l.getSize());
+        values.put(Database.Lake.COLUMN_NAME_COST, l.getCost());
+        values.put(Database.Lake.COLUMN_NAME_LOCATION, l.getLocation());
+        values.put(Database.Lake.COLUMN_NAME_CATEGORY, l.getCategory());
+        values.put(Database.Lake.COLUMN_NAME_DEPTH, l.getAuxdata().getDepth());
+        values.put(Database.Lake.COLUMN_NAME_WIKI, l.getAuxdata().getWiki());
+        return database.insert(Database.Lake.TABLE_NAME, null, values);
     }
-    private void fetchData(String sort) {
-        Cursor cursor = database.query(Database.Alldata.TABLE_NAME, null, null, null, null, null, null);
-        lakeArrayList.clear();
-
+    private ArrayList<Lake> fetchData(String sort) {
+        Cursor cursor = database.query(Database.Lake.TABLE_NAME, null, null, null, null, null, null);
+        ArrayList<Lake> lakeDatabase =new ArrayList<>();
         while (cursor.moveToNext()) {
-            if (cursor.getString(cursor.getColumnIndexOrThrow(Database.Alldata.COLUMN_NAME_CATEGORY))==sort) {
-                Alldata alldata = new Alldata(
-                        cursor.getString(cursor.getColumnIndexOrThrow(Database.Alldata.COLUMN_NAME_ID)),
-                        cursor.getString(cursor.getColumnIndexOrThrow(Database.Alldata.COLUMN_NAME_NAME)),
-                        cursor.getString(cursor.getColumnIndexOrThrow(Database.Alldata.COLUMN_NAME_COMPANY)),
-                        cursor.getInt(cursor.getColumnIndexOrThrow(Database.Alldata.COLUMN_NAME_SIZE)),
-                        cursor.getInt(cursor.getColumnIndexOrThrow(Database.Alldata.COLUMN_NAME_COST)),
-                        cursor.getString(cursor.getColumnIndexOrThrow(Database.Alldata.COLUMN_NAME_LOCATION)),
-                        cursor.getString(cursor.getColumnIndexOrThrow(Database.Alldata.COLUMN_NAME_CATEGORY)),
-                        cursor.getString(cursor.getColumnIndexOrThrow(Database.Alldata.COLUMN_NAME_DEPTH)),
-                        cursor.getString(cursor.getColumnIndexOrThrow(Database.Alldata.COLUMN_NAME_WIKI))
+            if (cursor.getString(cursor.getColumnIndexOrThrow(Database.Lake.COLUMN_NAME_CATEGORY)).equals(sort)) {
+                Lake templake = new Lake(
+                        cursor.getLong(cursor.getColumnIndexOrThrow(Database.Lake.COLUMN_NAME_ID)),
+                        cursor.getString(cursor.getColumnIndexOrThrow(Database.Lake.COLUMN_NAME_NAME)),
+                        cursor.getInt(cursor.getColumnIndexOrThrow(Database.Lake.COLUMN_NAME_SIZE)),
+                        cursor.getInt(cursor.getColumnIndexOrThrow(Database.Lake.COLUMN_NAME_COST)),
+                        cursor.getString(cursor.getColumnIndexOrThrow(Database.Lake.COLUMN_NAME_LOCATION)),
+                        cursor.getString(cursor.getColumnIndexOrThrow(Database.Lake.COLUMN_NAME_CATEGORY)),
+                        cursor.getInt(cursor.getColumnIndexOrThrow(Database.Lake.COLUMN_NAME_DEPTH)),
+                        cursor.getString(cursor.getColumnIndexOrThrow(Database.Lake.COLUMN_NAME_WIKI))
                 );
-                lakeArrayList.add(alldata);
+                lakeDatabase.add(templake);
+                Log.d(sort+" ==>", "fetchData: "+templake.getName()+" "+templake.getLocation());
             }
-            else if (sort=="ALL") {
-                Alldata alldata = new Alldata(
-                        cursor.getString(cursor.getColumnIndexOrThrow(Database.Alldata.COLUMN_NAME_ID)),
-                        cursor.getString(cursor.getColumnIndexOrThrow(Database.Alldata.COLUMN_NAME_NAME)),
-                        cursor.getString(cursor.getColumnIndexOrThrow(Database.Alldata.COLUMN_NAME_COMPANY)),
-                        cursor.getInt(cursor.getColumnIndexOrThrow(Database.Alldata.COLUMN_NAME_SIZE)),
-                        cursor.getInt(cursor.getColumnIndexOrThrow(Database.Alldata.COLUMN_NAME_COST)),
-                        cursor.getString(cursor.getColumnIndexOrThrow(Database.Alldata.COLUMN_NAME_LOCATION)),
-                        cursor.getString(cursor.getColumnIndexOrThrow(Database.Alldata.COLUMN_NAME_CATEGORY)),
-                        cursor.getString(cursor.getColumnIndexOrThrow(Database.Alldata.COLUMN_NAME_DEPTH)),
-                        cursor.getString(cursor.getColumnIndexOrThrow(Database.Alldata.COLUMN_NAME_WIKI))
+            else if (sort.equals("All")) {
+                Lake templake = new Lake(
+                        cursor.getLong(cursor.getColumnIndexOrThrow(Database.Lake.COLUMN_NAME_ID)),
+                        cursor.getString(cursor.getColumnIndexOrThrow(Database.Lake.COLUMN_NAME_NAME)),
+                        cursor.getInt(cursor.getColumnIndexOrThrow(Database.Lake.COLUMN_NAME_SIZE)),
+                        cursor.getInt(cursor.getColumnIndexOrThrow(Database.Lake.COLUMN_NAME_COST)),
+                        cursor.getString(cursor.getColumnIndexOrThrow(Database.Lake.COLUMN_NAME_LOCATION)),
+                        cursor.getString(cursor.getColumnIndexOrThrow(Database.Lake.COLUMN_NAME_CATEGORY)),
+                        cursor.getInt(cursor.getColumnIndexOrThrow(Database.Lake.COLUMN_NAME_DEPTH)),
+                        cursor.getString(cursor.getColumnIndexOrThrow(Database.Lake.COLUMN_NAME_WIKI))
                 );
-                lakeArrayList.add(alldata);
-            }
-            else{
-                Log.d("Sort ==>", ""+ sort);
+                lakeDatabase.add(templake);
+                Log.d(sort+" ==>", "fetchData: "+templake.getName()+" "+templake.getLocation());
             }
         }
         cursor.close();
-        return;
+        return lakeDatabase;
     }
+
 }
