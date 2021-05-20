@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 
 public class Details extends AppCompatActivity {
@@ -15,6 +16,8 @@ public class Details extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.details);
+        WebView wikiped = findViewById(R.id.webview_1);
+        wikiped.loadUrl(AuxData.wiki());
         Button back = findViewById(R.id.button_back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -22,16 +25,11 @@ public class Details extends AppCompatActivity {
                 finish();
             }
         });
-        Button fish = findViewById(R.id.button_fish);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
         Button info = findViewById(R.id.button_fishing_info);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
             }
         });
     }
@@ -57,10 +55,6 @@ public class Details extends AppCompatActivity {
             return true;
         }
         if (id == R.id.menu_item_settings) {
-            finish();
-            return true;
-        }
-        if (id == R.id.menu_item_fiskar) {
             finish();
             return true;
         }
