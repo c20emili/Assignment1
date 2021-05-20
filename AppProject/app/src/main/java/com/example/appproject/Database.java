@@ -1,9 +1,7 @@
 package com.example.appproject;
 
-import com.google.gson.annotations.SerializedName;
-
 public class Database {
-    static class Lake {
+    static class Alldata {
         static final String TABLE_NAME = "lake";
         static final String COLUMN_NAME_ID = "id";
         static final String COLUMN_NAME_NAME = "name";
@@ -17,18 +15,18 @@ public class Database {
     }
 
     public static final String SQL_CREATE_TABLE_LAKE =
-            "CREATE TABLE " + Lake.TABLE_NAME + " (" +
-                Lake.COLUMN_NAME_ID + " INTEGER PRIMARY KEY," +
-                Lake.COLUMN_NAME_NAME + " TEXT," +
-                Lake.COLUMN_NAME_COMPANY + " TEXT," +
-                Lake.COLUMN_NAME_SIZE + " INT," +
-                Lake.COLUMN_NAME_COST + " INT," +
-                Lake.COLUMN_NAME_LOCATION + " TEXT," +
-                Lake.COLUMN_NAME_CATEGORY + " TEXT," +
-                Lake.COLUMN_NAME_DEPTH + " INT," +
-                Lake.COLUMN_NAME_WIKI + " TEXT)" ;
+            "CREATE TABLE " + Alldata.TABLE_NAME + " (" +
+                Alldata.COLUMN_NAME_ID + " INTEGER PRIMARY KEY," +
+                Alldata.COLUMN_NAME_NAME + " TEXT," +
+                Alldata.COLUMN_NAME_COMPANY + " TEXT," +
+                Alldata.COLUMN_NAME_SIZE + " INT," +
+                Alldata.COLUMN_NAME_COST + " INT," +
+                Alldata.COLUMN_NAME_LOCATION + " TEXT," +
+                Alldata.COLUMN_NAME_CATEGORY + " TEXT," +
+                Alldata.COLUMN_NAME_DEPTH + " INT," +
+                Alldata.COLUMN_NAME_WIKI + " TEXT)" ;
 
     public static final String SQL_DELETE_TABLE_LAKE =
-            "DROP TABLE IF EXISTS " + Lake.TABLE_NAME;
+            "DROP TABLE IF EXISTS " + Alldata.TABLE_NAME;
 
 }

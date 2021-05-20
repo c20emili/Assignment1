@@ -9,15 +9,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class Details extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.details);
         WebView wikiped = findViewById(R.id.webview_1);
-        wikiped.loadUrl(AuxData.wiki());
+        TextView infotext =findViewById(R.id.details_text);
         Button back = findViewById(R.id.button_back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,10 +52,6 @@ public class Details extends AppCompatActivity {
             finish();
             Intent main = new Intent(Details.this, MainActivity.class);
             startActivity(main);
-            return true;
-        }
-        if (id == R.id.menu_item_settings) {
-            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);

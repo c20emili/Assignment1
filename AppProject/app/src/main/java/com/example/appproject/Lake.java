@@ -34,6 +34,8 @@ public class Lake {
         this.auxdata = null;
     }
 
+
+
     public String getId() {
         return id;
     }

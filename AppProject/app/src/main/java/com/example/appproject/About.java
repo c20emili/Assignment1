@@ -30,12 +30,6 @@ public class About extends AppCompatActivity {
             finish();
             return true;
         }
-        if (id == R.id.menu_item_settings) {
-            finish();
-            Intent sett = new Intent(About.this, Settings.class);
-            startActivity(sett);
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
 }
