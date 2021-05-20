@@ -18,9 +18,4 @@
         android:orderInCategory="140"
         android:title="@string/menu_item_name_settings"
         app:showAsAction="never" />
-    <item
-        android:id="@+id/menu_item_fiskar"
-        android:orderInCategory="110"
-        android:title="@string/menu_item_name_fiskar"
-        app:showAsAction="never" />
 </menu>

@@ -12,7 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppProject">
         <activity android:name=".Settings"></activity>
-        <activity android:name=".Fiskar" />
         <activity android:name=".Details" />
         <activity android:name=".About" />
         <activity android:name=".MainActivity">

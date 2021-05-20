@@ -28,16 +28,12 @@ public class About extends AppCompatActivity {
         }
         if (id == R.id.menu_item_huvudsida) {
             finish();
-            Intent main = new Intent(About.this, MainActivity.class);
-            startActivity(main);
             return true;
         }
         if (id == R.id.menu_item_settings) {
             finish();
-            return true;
-        }
-        if (id == R.id.menu_item_fiskar) {
-            finish();
+            Intent sett = new Intent(About.this, Settings.class);
+            startActivity(sett);
             return true;
         }
         return super.onOptionsItemSelected(item);

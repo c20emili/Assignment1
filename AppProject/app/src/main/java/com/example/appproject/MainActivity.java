@@ -43,15 +43,10 @@ public class MainActivity extends AppCompatActivity {
         lakeArrayAdapter = new ArrayAdapter<>(this, R.layout.list_line, R.id.list_text, lakeArrayList);//kopplar ihop xml-filen, textview elementet och listan
         ListView myListView = findViewById(R.id.lake_list);
         myListView.setAdapter(lakeArrayAdapter);
+
         new JsonTask().execute("https://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=c20emili");
 
         Button button = findViewById(R.id.uppdater);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new JsonTask().execute("https://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=c20emili");
-            }
-        });
     }
 
     @Override
@@ -72,13 +67,8 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         if (id == R.id.menu_item_settings) {
-            Intent about = new Intent(MainActivity.this, Settings.class);
-            startActivity(about);
-            return true;
-        }
-        if (id == R.id.menu_item_fiskar) {
-            Intent about = new Intent(MainActivity.this, Fiskar.class);
-            startActivity(about);
+            Intent sett = new Intent(MainActivity.this, Settings.class);
+            startActivity(sett);
             return true;
         }
         return super.onOptionsItemSelected(item);
