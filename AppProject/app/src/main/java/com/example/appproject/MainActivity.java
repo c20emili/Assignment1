@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -34,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
     private ArrayAdapter<Alldata> lakeArrayAdapter;
     private SQLiteDatabase database;
     private com.example.persistence.Helper helper;
+    private SharedPreferences konstant;
+    private SharedPreferences.Editor konstantEdit;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,36 @@ public class MainActivity extends AppCompatActivity {
         lakeArrayAdapter = new ArrayAdapter<>(this, R.layout.list_line, R.id.list_text, lakeArrayList);//kopplar ihop xml-filen, textview elementet och listan
         ListView myListView = findViewById(R.id.lake_list);
         myListView.setAdapter(lakeArrayAdapter);
+        
+        Button all = findViewById(R.id.knapp_all_lake);
+        all.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                konstantEdit.putString("choice","All");
+                konstantEdit.apply();
+                fetchData(konstant.getString("choice","All"));
+            }
+        });
+        Button free = findViewById(R.id.knapp_free_lake);
+        free.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                konstantEdit.putString("choice","Gratis");
+                konstantEdit.apply();
+                fetchData(konstant.getString("choice","All"));
+            }
+        });
+        Button card = findViewById(R.id.knapp_card_lake);
+        card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                konstantEdit.putString("choice","Fiskekort krävs");
+                konstantEdit.apply();
+                fetchData(konstant.getString("choice","All"));
+            }
+        });
+        konstant = getPreferences(MODE_PRIVATE);
+        konstantEdit = konstant.edit();
 
         new JsonTask().execute("https://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=c20emili");
     }
@@ -118,12 +152,14 @@ public class MainActivity extends AppCompatActivity {
                 Lake[] lakes = gson.fromJson(json, Lake[].class);
                 for (int i = 0; i < lakes.length; i++) {
                     Log.d("lista ==>", ""+ lakes[i]);
+                    addData(lakes[i].getId(), lakes[i].getName(), lakes[i].getCompany(), lakes[i].getSize(), lakes[i].getCost(), lakes[i].getLocation(), lakes[i].getCategory(), lakes[i].getAuxdata().getDepth(), lakes[i].getAuxdata().getWiki());
                 }
             }
             catch (Exception e){
                 Log.d("JsonException ==>", "Error: "+ e);
             }
-            fetchData();
+
+            Log.d("konstant ==>", "Konstant= "+ konstant.getString("choice","All"));
             lakeArrayAdapter.notifyDataSetChanged();
         }
     }
@@ -134,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
         values.put(Database.Alldata.COLUMN_NAME_COMPANY, company);
         values.put(Database.Alldata.COLUMN_NAME_SIZE, size);
         values.put(Database.Alldata.COLUMN_NAME_COST, cost);
-        values.put(Database.Alldata.COLUMN_NAME_COMPANY, company);
+        values.put(Database.Alldata.COLUMN_NAME_LOCATION, location);
         values.put(Database.Alldata.COLUMN_NAME_CATEGORY, category);
         values.put(Database.Alldata.COLUMN_NAME_DEPTH, depth);
         values.put(Database.Alldata.COLUMN_NAME_WIKI, wiki);
