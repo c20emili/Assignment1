@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class about extends AppCompatActivity {
+public class About extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,15 +28,15 @@ public class about extends AppCompatActivity {
         }
         if (id == R.id.menu_item_huvudsida) {
             finish();
-            Intent main = new Intent(about.this, MainActivity.class);
+            Intent main = new Intent(About.this, MainActivity.class);
             startActivity(main);
             return true;
         }
-        if (id == R.id.menu_item_3) {
+        if (id == R.id.menu_item_settings) {
             finish();
             return true;
         }
-        if (id == R.id.menu_item_4) {
+        if (id == R.id.menu_item_fiskar) {
             finish();
             return true;
         }
