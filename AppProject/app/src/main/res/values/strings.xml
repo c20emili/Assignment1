@@ -2,12 +2,12 @@
     <string name="app_name">Svenska Sjöar</string>
     <string name="menu_item_name_1">Om Appen</string>
     <string name="about_text">Denna app är för fiskare för att kunna få information om svenska sjöar(om det krävs fiske kort, vilka fiskar som finns där, var de ligger, m.m).</string>
-    <string name="menu_item_name_2">Huvudsida</string>
-    <string name="menu_item_name_3">Uppdatera</string>
-    <string name="menu_item_name_4">Alla fiskar</string>
-    <string name="button_name_1">Tillbaka</string>
-    <string name="button_name_2">Fiskar</string>
-    <string name="button_name_3">Fiske info</string>
+    <string name="menu_item_name_huvudsida">Huvudsida</string>
+    <string name="menu_item_name_settings">Inställningar</string>
+    <string name="menu_item_name_fiskar">Alla fiskar</string>
+    <string name="button_back_name">Tillbaka</string>
+    <string name="button_fish_name">Fiskar</string>
+    <string name="button_fishing_info_name">Fiske info</string>
     <string name="update">Uppdatera</string>
 
 </resources>

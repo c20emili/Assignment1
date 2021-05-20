@@ -11,16 +11,16 @@
     <item
         android:id="@+id/menu_item_huvudsida"
         android:orderInCategory="100"
-        android:title="@string/menu_item_name_2"
+        android:title="@string/menu_item_name_huvudsida"
         app:showAsAction="never" />
     <item
-        android:id="@+id/menu_item_3"
+        android:id="@+id/menu_item_settings"
         android:orderInCategory="140"
-        android:title="@string/menu_item_name_3"
+        android:title="@string/menu_item_name_settings"
         app:showAsAction="never" />
     <item
-        android:id="@+id/menu_item_4"
+        android:id="@+id/menu_item_fiskar"
         android:orderInCategory="110"
-        android:title="@string/menu_item_name_4"
+        android:title="@string/menu_item_name_fiskar"
         app:showAsAction="never" />
 </menu>

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,11 +29,16 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private ArrayList<Lake> lakeArrayList = new ArrayList<>();
     private ArrayAdapter<Lake> lakeArrayAdapter;
+    public SharedPreferences sort;
+    public SharedPreferences.Editor myPreferenceEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        sort = getPreferences(MODE_PRIVATE);
+        myPreferenceEditor = sort.edit();
 
         lakeArrayAdapter = new ArrayAdapter<>(this, R.layout.list_line, R.id.list_text, lakeArrayList);//kopplar ihop xml-filen, textview elementet och listan
         ListView myListView = findViewById(R.id.lake_list);
@@ -59,18 +65,18 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.menu_item_about) {
             finish();
-            Intent about = new Intent(MainActivity.this, about.class);
+            Intent about = new Intent(MainActivity.this, About.class);
             startActivity(about);
             return true;
         }
         if (id == R.id.menu_item_huvudsida) {
             return true;
         }
-        if (id == R.id.menu_item_3) {
+        if (id == R.id.menu_item_settings) {
             finish();
             return true;
         }
-        if (id == R.id.menu_item_4) {
+        if (id == R.id.menu_item_fiskar) {
             finish();
             return true;
         }

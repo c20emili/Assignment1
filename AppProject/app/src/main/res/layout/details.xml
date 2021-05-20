@@ -9,8 +9,7 @@
     android:id="@+id/webview_1"
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintBottom_toTopOf="@+id/bottom_half"/>
+    app:layout_constraintTop_toTopOf="parent"/>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,40 +22,41 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:text="Placeholder text before data is fetched"
+            android:id="@+id/details_text"
+            android:textSize="20sp"
+            android:text="Nothing here yet"
             android:layout_marginBottom="20dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/button_1"/>
+            app:layout_constraintBottom_toTopOf="@id/button_back"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button_1"
-            android:text="@string/button_name_1"
+            android:id="@+id/button_back"
+            android:text="@string/button_back_name"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/button_2"
+            app:layout_constraintRight_toLeftOf="@id/button_fish"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button_2"
-            android:text="@string/button_name_2"
-            app:layout_constraintLeft_toRightOf="@id/button_1"
-            app:layout_constraintRight_toLeftOf="@id/button_3"
+            android:id="@+id/button_fish"
+            android:text="@string/button_fish_name"
+            app:layout_constraintLeft_toRightOf="@id/button_back"
+            app:layout_constraintRight_toLeftOf="@id/button_fishing_info"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button_3"
-            android:text="@string/button_name_3"
-            app:layout_constraintLeft_toRightOf="@id/button_2"
+            android:id="@+id/button_fishing_info"
+            android:text="@string/button_fishing_info_name"
+            app:layout_constraintLeft_toRightOf="@id/button_fish"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
