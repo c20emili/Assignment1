@@ -64,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.menu_item_about) {
-            finish();
             Intent about = new Intent(MainActivity.this, About.class);
             startActivity(about);
             return true;
@@ -73,11 +72,13 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         if (id == R.id.menu_item_settings) {
-            finish();
+            Intent about = new Intent(MainActivity.this, Settings.class);
+            startActivity(about);
             return true;
         }
         if (id == R.id.menu_item_fiskar) {
-            finish();
+            Intent about = new Intent(MainActivity.this, Fiskar.class);
+            startActivity(about);
             return true;
         }
         return super.onOptionsItemSelected(item);
