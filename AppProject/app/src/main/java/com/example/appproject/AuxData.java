@@ -32,6 +32,6 @@ public class AuxData {
 
     @Override
     public String toString() {
-        return "Djup " + depth + "meter";
+        return ""+depth+"";
     }
 }

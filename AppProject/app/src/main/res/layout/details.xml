@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#000000">
+    android:background="#333333">
 <WebView
     android:layout_width="match_parent"
     android:layout_height="400dp"
@@ -13,24 +13,23 @@
     app:layout_constraintTop_toTopOf="parent"/>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
         android:id="@+id/bottom_half"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/webview_1"
         app:layout_constraintBottom_toBottomOf="parent"
         >
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/details_text"
-            android:textSize="20sp"
-            android:textColor="#DE3163"
-            android:text="Nothing here yet"
+            android:textSize="15sp"
+            android:textColor="#ffffff"
+            android:text="@string/detalj_text"
             android:layout_marginBottom="20dp"
+            android:layout_marginHorizontal="50dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/button_back"/>
 
         <Button
@@ -40,7 +39,6 @@
             android:text="@string/button_back_name"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             />
 

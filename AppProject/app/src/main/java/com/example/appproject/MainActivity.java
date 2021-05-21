@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -63,7 +64,11 @@ public class MainActivity extends AppCompatActivity {
         lakeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                detailView(position);
+                Intent detaljer = new Intent(MainActivity.this, Details.class);
+                Lake l =lakeArrayList.get(position);
+                detaljer.putExtra("wiki_link",l.getAuxdata().getWiki());
+                detaljer.putExtra("text_func",l.textFunc());
+                startActivity(detaljer);
             }
         });
         TextView val=findViewById(R.id.titel);
@@ -114,14 +119,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-    }
-    public void detailView(int item){
-        setContentView(R.layout.details);
-        WebView wikiped = findViewById(R.id.webview_1);
-        Lake l =lakeArrayList.get(item);
-        wikiped.loadUrl(l.getAuxdata().getWiki());
-        TextView infotext =findViewById(R.id.details_text);
-        infotext.setText(l.textFunc());
     }
 
     @Override

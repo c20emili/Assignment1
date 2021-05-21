@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="#FFFFFF">
+    android:background="#333333">
 
     <TextView
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
         android:textColor="#DE3163"
         android:textAlignment="center"
         android:gravity="center_horizontal"
-        android:text="Tom"
+        android:text="@string/tom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -45,7 +45,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Välj sjöar:"
+            android:text="@string/valj_sjoar"
             android:textSize="50sp"
             android:textColor="#DE3163"
             android:layout_marginHorizontal="40dp"
@@ -56,7 +56,7 @@
         <Button
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:text="Alla Sjöar"
+            android:text="@string/alla_sjoar"
             android:id="@+id/knapp_all_lake"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -65,7 +65,7 @@
         <Button
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:text="Sjöar med gratis fiske"
+            android:text="@string/gratis_fiske"
             android:id="@+id/knapp_free_lake"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -73,7 +73,7 @@
         <Button
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:text="Sjöar fiskekort"
+            android:text="@string/fiskekort"
             android:id="@+id/knapp_card_lake"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

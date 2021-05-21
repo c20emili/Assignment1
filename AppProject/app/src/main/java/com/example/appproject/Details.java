@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -16,8 +17,29 @@ public class Details extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.details);
-        WebView wikiped = findViewById(R.id.webview_1);
+        WebView wikipage = findViewById(R.id.webview_1);
+        wikipage.setWebViewClient(new WebViewClient());
+        wikipage.getSettings().setJavaScriptEnabled(true);
         TextView infotext =findViewById(R.id.details_text);
+
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String wiki = extras.getString("wiki_link");
+            wikipage.loadUrl(wiki);
+            String info = extras.getString("text_func");
+            infotext.setText(info);
+        }
+
+        Button back = findViewById(R.id.button_back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                Intent main = new Intent(Details.this, MainActivity.class);
+                startActivity(main);
+            }
+        });
 
     }
     @Override
