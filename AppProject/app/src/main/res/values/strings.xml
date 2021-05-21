@@ -10,5 +10,12 @@
     <string name="button_fishing_info_name">Fiske info</string>
     <string name="update">Uppdatera</string>
     <string name="selektion">Skriv här</string>
+    <string name="om_appen">Om Appen</string>
+    <string name="tom">Tom</string>
+    <string name="valj_sjoar">Välj sjöar:</string>
+    <string name="alla_sjoar">Alla Sjöar</string>
+    <string name="gratis_fiske">Sjöar med gratis fiske</string>
+    <string name="fiskekort">Sjöar fiskekort</string>
+    <string name="detalj_text">Nothing here yet</string>
 
 </resources>
