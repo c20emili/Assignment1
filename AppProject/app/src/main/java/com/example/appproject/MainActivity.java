@@ -35,7 +35,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private List<Lake> lakeArrayList = new ArrayList<>();
-    private ArrayAdapter<Lake> lakeArrayAdapter;
+    private ArrayAdapter<Lake> adapter;
     private SQLiteDatabase database;
     private Helper helper;
     private SharedPreferences konstant;
@@ -46,52 +46,72 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        konstant = getPreferences(MODE_PRIVATE);
+        konstantEdit = konstant.edit();
+
         helper = new Helper(this);
         database = helper.getWritableDatabase();
+        database.delete(Database.Lake.TABLE_NAME,null,null);
+        new JsonTask().execute("https://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=c20emili");
 
-        lakeArrayAdapter = new ArrayAdapter<>(this, R.layout.list_line, R.id.list_text, lakeArrayList);//kopplar ihop xml-filen, textview elementet och listan
-        ListView myListView = findViewById(R.id.lake_list);
-        myListView.setAdapter(lakeArrayAdapter);
 
-        myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lakeArrayList = fetchData(konstant.getString("choice","All"));
+        adapter = new ArrayAdapter<>(this, R.layout.list_textview,R.id.text_item, lakeArrayList);
+        ListView lakeListView = findViewById(R.id.main_list);
+        lakeListView.setAdapter(adapter);
+
+        lakeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 detailView(position);
             }
         });
-
+        TextView val=findViewById(R.id.titel);
+        val.setText(konstant.getString("titel","Tom"));
         Button all = findViewById(R.id.knapp_all_lake);
         all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 konstantEdit.putString("choice","All");
+                konstantEdit.putString("titel","Alla sjöar");
                 konstantEdit.apply();
-                lakeArrayList=fetchData(konstant.getString("choice","All"));
-                lakeArrayAdapter.notifyDataSetChanged();
+                val.setText(konstant.getString("titel","Tom"));
+                lakeArrayList.clear();
+                lakeArrayList.addAll(fetchData(konstant.getString("choice","All")));
+                Log.d("Testlist==>", "onCreate: "+lakeArrayList.toString());
+                adapter.notifyDataSetChanged();
             }
         });
+
         Button free = findViewById(R.id.knapp_free_lake);
         free.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 konstantEdit.putString("choice","Inget");
+                konstantEdit.putString("titel","Gratis fiske");
                 konstantEdit.apply();
-                lakeArrayList=fetchData(konstant.getString("choice","All"));
-                lakeArrayAdapter.notifyDataSetChanged();
+                val.setText(konstant.getString("titel","Tom"));
+                lakeArrayList.clear();
+                lakeArrayList.addAll(fetchData(konstant.getString("choice","All")));
+                Log.d("Testlist==>", "onCreate: "+lakeArrayList.toString());
+                adapter.notifyDataSetChanged();
             }
         });
+
         Button card = findViewById(R.id.knapp_card_lake);
         card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 konstantEdit.putString("choice","Fiskekort");
+                konstantEdit.putString("titel","Fiskekort krävs");
                 konstantEdit.apply();
-                lakeArrayList=fetchData(konstant.getString("choice","All"));
-                lakeArrayAdapter.notifyDataSetChanged();
+                val.setText(konstant.getString("titel","Tom"));
+                lakeArrayList.clear();
+                lakeArrayList.addAll(fetchData(konstant.getString("choice","All")));
+                Log.d("Testlist==>", "onCreate: "+lakeArrayList.toString());
+                adapter.notifyDataSetChanged();
             }
         });
-        konstant = getPreferences(MODE_PRIVATE);
-        konstantEdit = konstant.edit();
 
 
     }
@@ -119,8 +139,6 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         if (id == R.id.menu_item_huvudsida) {
-            database.delete(Database.Lake.TABLE_NAME,null,null);
-            new JsonTask().execute("https://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=c20emili");
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -173,7 +191,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String json) {
             lakeArrayList.clear();
-            Log.d("Json ==>", " : "+  json);
             try {
                 Gson gson = new Gson();
                 Lake[] lakes = gson.fromJson(json, Lake[].class);
@@ -185,11 +202,13 @@ public class MainActivity extends AppCompatActivity {
             catch (Exception e){
                 Log.d("JsonException ==>", "Error: "+ e);
             }
-            lakeArrayList=fetchData(konstant.getString("choice","All"));
-            Log.d("Array ==>", " "+lakeArrayList.toString());
-            lakeArrayAdapter.notifyDataSetChanged();
+            lakeArrayList.addAll(fetchData(konstant.getString("choice","All")));
+            Log.d("==>", "listan: "+lakeArrayList.toString());
+            adapter.notifyDataSetChanged();
+
         }
     }
+
     private long addData(Lake l) {
         ContentValues values = new ContentValues();
         values.put(Database.Lake.COLUMN_NAME_NAME, l.getName());

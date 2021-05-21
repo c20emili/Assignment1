@@ -103,8 +103,9 @@ public class Lake {
     public String toString() {
         return  name + " i " + location;
     }
+
     public String textFunc(){
-        String temp ="Sjön "+name+" ligger delvis eller helt i "+location+"'s län. den är "+size+"kilometer area och är "+ auxdata+"meter djup. Det krävs "+category+" för att fiska i "+name+" vilket gör att det kostar"+cost+"kr att fiska" ;
+        String temp ="Sjön "+name+" ligger delvis eller helt i "+location+"'s län. den är "+size+"kvadrat kilometer och är "+ auxdata+"meter djup. Det krävs "+category+" för att fiska i "+name+" vilket gör att det kostar"+cost+"kr att fiska" ;
         return temp;
     }
 }

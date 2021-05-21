@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#000000">
 <WebView
     android:layout_width="match_parent"
     android:layout_height="400dp"
@@ -24,6 +25,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/details_text"
             android:textSize="20sp"
+            android:textColor="#DE3163"
             android:text="Nothing here yet"
             android:layout_marginBottom="20dp"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -37,26 +39,6 @@
             android:id="@+id/button_back"
             android:text="@string/button_back_name"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/button_fish"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/button_fish"
-            android:text="@string/button_fish_name"
-            app:layout_constraintLeft_toRightOf="@id/button_back"
-            app:layout_constraintRight_toLeftOf="@id/button_fishing_info"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/button_fishing_info"
-            android:text="@string/button_fishing_info_name"
-            app:layout_constraintLeft_toRightOf="@id/button_fish"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
