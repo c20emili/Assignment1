@@ -83,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
                 val.setText(konstant.getString("titel","Tom"));
                 lakeArrayList.clear();
                 lakeArrayList.addAll(fetchData(konstant.getString("choice","All")));
-                Log.d("Testlist==>", "onCreate: "+lakeArrayList.toString());
                 adapter.notifyDataSetChanged();
             }
         });
@@ -98,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
                 val.setText(konstant.getString("titel","Tom"));
                 lakeArrayList.clear();
                 lakeArrayList.addAll(fetchData(konstant.getString("choice","All")));
-                Log.d("Testlist==>", "onCreate: "+lakeArrayList.toString());
                 adapter.notifyDataSetChanged();
             }
         });
@@ -113,7 +111,6 @@ public class MainActivity extends AppCompatActivity {
                 val.setText(konstant.getString("titel","Tom"));
                 lakeArrayList.clear();
                 lakeArrayList.addAll(fetchData(konstant.getString("choice","All")));
-                Log.d("Testlist==>", "onCreate: "+lakeArrayList.toString());
                 adapter.notifyDataSetChanged();
             }
         });
@@ -200,7 +197,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("JsonException ==>", "Error: "+ e);
             }
             lakeArrayList.addAll(fetchData(konstant.getString("choice","All")));
-            Log.d("==>", "listan: "+lakeArrayList.toString());
             adapter.notifyDataSetChanged();
 
         }

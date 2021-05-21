@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:text="@string/om_appen"
         android:textSize="26sp"
-        android:textColor="#448866"
+        android:textColor="#DE3163"
         android:textStyle="bold"
         android:fontFamily="serif"
         app:layout_constraintRight_toRightOf="parent"
